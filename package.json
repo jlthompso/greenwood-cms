@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jlthompso/greenwood-cms#readme",
   "workspaces": [
-	"blog-site"
+	"blog-site",
+	"blog-db-service"
   ]
 }
