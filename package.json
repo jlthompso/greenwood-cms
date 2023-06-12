@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jlthompso/greenwood-cms/issues"
   },
-  "homepage": "https://github.com/jlthompso/greenwood-cms#readme"
+  "homepage": "https://github.com/jlthompso/greenwood-cms#readme",
+  "workspaces": [
+	"blog-site"
+  ]
 }
