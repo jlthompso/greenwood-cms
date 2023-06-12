@@ -1,0 +1,19 @@
+{
+  "name": "greenwood-cms",
+  "version": "0.1.0",
+  "description": "Basic blog and ecommerce platform.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlthompso/greenwood-cms.git"
+  },
+  "author": "Joe Thompson",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/jlthompso/greenwood-cms/issues"
+  },
+  "homepage": "https://github.com/jlthompso/greenwood-cms#readme"
+}
