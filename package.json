@@ -4,7 +4,10 @@
   "description": "Basic blog and ecommerce platform.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:blog-db-service": "npm start --workspace=blog-db-service",
+    "dev:blog-site": "npm run dev --workspace=blog-site",
+    "dev": "npm-run-all --parallel dev:*"
   },
   "repository": {
     "type": "git",
@@ -17,7 +20,10 @@
   },
   "homepage": "https://github.com/jlthompso/greenwood-cms#readme",
   "workspaces": [
-	"blog-site",
-	"blog-db-service"
-  ]
+    "blog-site",
+    "blog-db-service"
+  ],
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
 }
