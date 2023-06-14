@@ -6,6 +6,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+process.on('SIGINT', () => process.exit());  // prevents npm script error
+
 var app = express();
 
 app.use(logger('dev'));

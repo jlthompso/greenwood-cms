@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "dev": "start /B \"\" mongod && node ./bin/www",
+    "start": "node ./bin/www",
+    "postdev": "taskkill /f /im mongod.exe"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
