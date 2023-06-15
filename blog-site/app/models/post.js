@@ -1,7 +1,7 @@
 export default class Post {
-    constructor(title, publishDate, author, body) {
+    constructor(title, date, author, body) {
         this.title = title
-        this.publishDate = publishDate
+        this.date = date
         this.author = author
         this.body = body
     }

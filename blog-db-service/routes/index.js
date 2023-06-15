@@ -2,18 +2,16 @@ var express = require('express');
 var router = express.Router();
 const { MongoClient } = require('mongodb');
 
-const uri = 'mongodb://localhost:27017';
+const uri = 'mongodb://127.0.0.1:27017';
 const client = new MongoClient(uri);
 const database = client.db('blog');
-const posts = database.collection('posts');
+const postsCollection = database.collection('posts');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-router.post('/', (req, res) => {
-  res.send('Got a POST request');
+// Add a new post to the database
+router.post("/", async (req, res) => {
+  const post = req.body;
+  const result = await postsCollection.insertOne(post);
+  res.send(result).status(204);
 });
 
 module.exports = router;

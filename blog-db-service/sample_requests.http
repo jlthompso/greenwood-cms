@@ -1,0 +1,9 @@
+POST http://localhost:3000 HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Sample Post",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT",
+    "author": "Joe Thompson",
+    "body": "This is a test blog post."
+}
