@@ -1,9 +1,16 @@
-import NewPostForm from './components/newPostForm';
+import CreatePost from './pages/CreatePost';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
 
-function App() {
+export default function App() {
   return (
-    <NewPostForm/>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/'>
+          <Route index element={<Home />}/>
+          <Route path='createpost' element={<CreatePost />}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
