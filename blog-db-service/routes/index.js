@@ -14,6 +14,15 @@ router.post("/", async (req, res) => {
   res.send(result).status(204);
 });
 
+// Fetch all post details from the database with most recent posts first
+router.get("/", async (req, res) => {
+  const results = await postsCollection.aggregate([
+    {"$project": {"author": 1, "title": 1, "time": 1}},
+    {"$sort": {"time": -1}},
+  ]).toArray();
+  res.send(results).status(200);
+});
+
 // Fetch the 5 most recent posts from the database
 router.get("/latest", async (req, res) => {
   const results = await postsCollection.aggregate([
