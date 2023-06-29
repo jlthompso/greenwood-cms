@@ -11,7 +11,7 @@ export default function NavigationBar() {
   ];
 
   return (
-    <Box sx={{ flexGrow: 1, my: '1rem' }}>
+    <Box sx={{ flexGrow: 1, marginBottom: '1rem' }}>
       <AppBar position='static'>
         <Toolbar>
           {pages.map(({route, title}) => 
