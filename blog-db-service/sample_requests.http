@@ -30,7 +30,7 @@ DELETE http://localhost:3000/648b3c6f609ff8be4131696a HTTP/1.1
 
 ###
 
-PATCH http://localhost:3000/title/648c8069d3914fdbab08a470 HTTP/1.1
+PATCH http://localhost:3000/648c8069d3914fdbab08a470 HTTP/1.1
 content-type: application/json
 
 {

@@ -28,6 +28,12 @@ export default function PostList() {
     if (!showDeletePostDialog) {
       fetchPosts();
     }
+  }, []);
+
+  useEffect(() => {
+    if (!showDeletePostDialog) {
+      fetchPosts();
+    }
   }, [showDeletePostDialog]);
 
   return (

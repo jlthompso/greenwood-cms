@@ -5,7 +5,8 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import IconButton from '@mui/material/IconButton';
 
 export default function PostDetailsLine(post, openDeletePostDialog, setPostId, navigate) {
-  const handleClick = () => {
+  const handleClick = (event) => {
+    event.stopPropagation();
     setPostId(post._id);
     openDeletePostDialog();
   };

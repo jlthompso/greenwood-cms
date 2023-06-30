@@ -41,7 +41,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Update a post
-router.patch("/title/:id", async (req, res) => {
+router.patch("/:id", async (req, res) => {
   const query = { _id: new ObjectId(req.params.id) };
   const updates = {
     $set: req.body
