@@ -1,8 +1,8 @@
-import { Grid, Box, Divider } from '../components/material';
+import { Grid, Divider } from '../components/material';
 import Post from '../components/post';
 
 async function fetchLatestPosts() {
-  const res = await fetch('http://localhost:3000/latest');
+  const res = await fetch('http://localhost:3000/latest', { cache: 'no-store' });
   return res.json();
 }
 

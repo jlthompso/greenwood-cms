@@ -71,18 +71,18 @@ export default function NewPostForm() {
             id='post-title'
             label='Title'
             onChange={event => setTitle(event.target.value)}
-            value={_id ? title : ''}
+            value={title}
           />
           <DateTimePicker
             label="Publish Date"
             onChange={event => setDate(new Date(event).toString())}
-            value={_id ? dayjs(date) : ''}
+            value={dayjs(date)}
           />
           <TextField
             id='post-author'
             label='Author'
             onChange={event => setAuthor(event.target.value)}
-            value={_id ? author : ''}
+            value={author}
           />
           <TextField
             id='post-body'
@@ -90,7 +90,7 @@ export default function NewPostForm() {
             multiline
             rows={6}
             onChange={event => setBody(event.target.value)}
-            value={_id ? body : ''}
+            value={body}
           />
           <Button type='submit' variant='contained'>{_id ? 'Save' : 'Publish'}</Button>
           <Button variant='outlined' onClick={() => navigate(-1)}>Cancel</Button>

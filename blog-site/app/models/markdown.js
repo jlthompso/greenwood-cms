@@ -16,6 +16,7 @@
 |                                      |   </ListItem>                                                   |
 |                                      | </List>                                                         |                    
 | Link [Guide](https://www.google.com) | <Link href="https://www.google.com">Guide</Link>                |
+| \r, \n, \r\n (newline)               | <br>                                                            |
 |--------------------------------------------------------------------------------------------------------|
 */
 
@@ -27,11 +28,11 @@ class Node {
   }
 
   get openingTag() {
-    return '<>';
+    return '<div>';
   }
 
   get closingTag() {
-    return '</>';
+    return '</div>';
   }
 }
 
@@ -66,7 +67,7 @@ function generateNode(input) {
     case '##':
       return new TextStyle({ headingLevel: 2 });
     case '###':
-      return node = new TextStyle({ headingLevel: 3 });
+      return new TextStyle({ headingLevel: 3 });
     case '*':
       return new TextStyle({ bold: true });
     case '/':
@@ -125,6 +126,6 @@ function generateJSX(root, visitedNodes) {
   return output;
 }
 
-function convertMarkdownToJSX(input) {
+export default function convertMarkdownToJSX(input) {
   return generateJSX(parseText(input));
 }
