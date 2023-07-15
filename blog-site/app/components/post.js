@@ -5,7 +5,7 @@ export default function Post(props) {
   return (
     <Box>
       <Typography variant='h3'>{props.post.title}</Typography>
-      <div dangerouslySetInnerHTML={{__html: convertMarkdownToJSX(props.post.body)}} />
+      {convertMarkdownToJSX(props.post.body)}
     </Box>
   );
 }

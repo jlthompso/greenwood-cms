@@ -20,12 +20,11 @@
 |--------------------------------------------------------------------------------------------------------|
 */
 
+import { createElement, ReactElement } from "react";
+import { Typography } from "../components/material";
+
 class Node {
   children = [];
-
-  addChild(node) {
-    this.children.push(node);
-  }
 
   get openingTag() {
     return '<div>';
@@ -33,6 +32,14 @@ class Node {
 
   get closingTag() {
     return '</div>';
+  }
+
+  addChild(node) {
+    this.children.push(node);
+  }
+
+  element(children) {
+    return createElement('div', null, children)
   }
 }
 
@@ -58,6 +65,13 @@ class TextStyle extends Node {
   get closingTag() {
     return '</Typography>';
   }
+
+  element(children) {
+    const variant = this.#headingLevel ? `h${this.#headingLevel}` : 'body1';
+    const fontWeight = this.#bold ? 'bold' : 'normal';
+    const fontStyle = this.#italic ? 'italic' : 'normal';
+    return createElement(Typography, { variant, fontWeight, fontStyle }, children);
+  }
 }
 
 function generateNode(input) {
@@ -74,14 +88,16 @@ function generateNode(input) {
       return new TextStyle({ italic: true });
     default:
       // raw text
-      return input.replace(/[\r\n]/, '<br>');
+      return input;
   }
 }
 
 function parseText(input, root) {
   if (!root) {
     root = new Node();
-    input = input.split(/[^\S\r\n]/);
+    input = input.replace(/\r?\n/g, ' <br> ');
+    input = input.split(/\s/);
+    console.log(input);
   }
 
   while (input.length) {
@@ -126,6 +142,36 @@ function generateJSX(root, visitedNodes) {
   return output;
 }
 
+function generateReactObjects(root, visitedNodes) {
+  if (!visitedNodes) {
+    visitedNodes = [];
+  }
+
+  const childElements = [];
+
+  visitedNodes.push(root);
+  const children = root.children;
+  for (let i = 0; i < children.length; i++) {
+    let child = children[i];
+    if (!visitedNodes.includes(child)) {
+      if (child instanceof Node) {
+        childElements.push(generateReactObjects(child, visitedNodes));
+      } else if (child === '<br>') {
+        childElements.push(createElement('br'));
+      } else {
+        let text = '';
+        while (i < children.length && !(children[i + 1] instanceof Node) && children[i + 1] !== '<br>') {
+          text += text.length ? ' ' + child : child;
+          child = children[++i];
+        }
+        childElements.push(text);
+      }
+    }
+  }
+
+  return root.element(childElements);
+}
+
 export default function convertMarkdownToJSX(input) {
-  return generateJSX(parseText(input));
+  return generateReactObjects(parseText(input));
 }
