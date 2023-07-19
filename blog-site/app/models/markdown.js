@@ -20,7 +20,7 @@
 |--------------------------------------------------------------------------------------------------------|
 */
 
-import { createElement, ReactElement } from "react";
+import { createElement } from "react";
 import { Typography } from "../components/material";
 
 class Node {
@@ -92,18 +92,19 @@ function generateNode(input) {
   }
 }
 
-function parseText(input, root) {
+function parseText(input, root, parent) {
   if (!root) {
     root = new Node();
     input = input.replace(/\r?\n/g, ' <br> ');
     input = input.split(/\s/);
-    console.log(input);
   }
 
   while (input.length) {
     const child = generateNode(input.shift());
     if (child instanceof Node) {
-      root.addChild(parseText(input, child));
+      root.addChild(parseText(input, child, root));
+    } else if (parent instanceof Node && child === '<br>') {
+      break;
     } else {
       root.addChild(child);
     }
