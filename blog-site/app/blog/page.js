@@ -1,5 +1,4 @@
-import { Grid, Divider } from '../components/material';
-import Post from '../components/post';
+import PostList from '../components/postList';
 
 async function fetchLatestPosts() {
   const res = await fetch('http://localhost:3000/latest', { cache: 'no-store' });
@@ -10,13 +9,6 @@ export default async function Blog() {
   const posts = await fetchLatestPosts();
 
   return (
-    <Grid container spacing={2}>
-      {posts.map(post => 
-          <Grid item xs={12}>
-              <Post post={post} />
-              <Divider />
-          </Grid>
-      )}
-    </Grid>
+    <PostList posts={posts} />
   );
 }
